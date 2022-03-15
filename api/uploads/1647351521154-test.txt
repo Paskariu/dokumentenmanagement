@@ -1,0 +1,2 @@
+Dies ist eine TextDatei, die zum Test dient.
+Eine zweite Zeile gibt es auch.
