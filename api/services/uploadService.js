@@ -1,6 +1,8 @@
+const fP = require('./fileProcessing');
+
 async function upload(req, res, file, timestamp) {
     if (checkFileType(file)) {
-        file.mv('./uploads/' + timestamp + "-" + file.name);
+        await file.mv('./uploads/' + timestamp + "-" + file.name);
 
         res.send({
             status: true,
@@ -11,6 +13,7 @@ async function upload(req, res, file, timestamp) {
                 size: file.size
             }
         });
+        fP.processfile(req, res, file, timestamp);
     } else {
         res.send({
             status: false,

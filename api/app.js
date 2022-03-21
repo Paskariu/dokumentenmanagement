@@ -3,8 +3,9 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const fP = require('./services/fileProcessing');
-const uploadService = require('./services/uploadService')
+const searchService = require('./services/searchService');
+const uploadService = require('./services/uploadService');
+const metadataService = require('./services/metadataservice');
 
 // CONFIGURE APP
 const app = express();
@@ -26,14 +27,23 @@ app.post('/upload', async function(req, res) {
         } else {
             let file = req.files.file;
             let timestamp = Date.now();
-            await uploadService.upload(req, res, file, timestamp).then(() => {
-                fP.processfile(req, res, file, timestamp);
-            });
+            await uploadService.upload(req, res, file, timestamp);
         }
     } catch (err) {
         res.status(500).send(err);
     }
 });
+
+app.get('/search/:searchField', async(req, res) => {
+    let files = await searchService.search(req.params.searchField);
+    res.send(files);
+});
+
+app.get('/metadata', async(req, res) => {
+    console.log(req.body.filename)
+    let meta = await metadataService.getMetaData(req.body.filename);
+    res.send(meta);
+})
 
 app.listen(3000, () => {
     console.log("Server is listening on Port 3000.")
