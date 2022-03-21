@@ -25,12 +25,7 @@ async function upload(req, res, file, timestamp) {
 
 function checkFileType(file, cb) {
     const fileTypes = ['application/pdf', //.pdf
-        'application/msword', //.doc
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document', //.docx
-        'application/vnd.oasis.opendocument.text', //.odt
-        'application/rtf', //.rtf
-        'text/csv', //.csv
-        'text/plain' //.txt
     ]
     if (fileTypes.includes(file.mimetype)) {
         return true;

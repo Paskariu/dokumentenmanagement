@@ -15,27 +15,20 @@ async function processfile(_req, _res, file, timestamp) {
 async function readFile(mime, fn) {
     let text = '';
     switch (mime) {
-        case 'text/plain':
-            text = fs.readFileSync(fn, 'utf-8');
-            break;
         case 'application/pdf':
             const pdfParse = require('pdf-parse');
             var data = await pdfParse(fs.readFileSync(fn));
             text = data.text;
             break;
         case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-            var textract = require('textract');
-            textract.fromFileWithPath(fn, (_err, result) => {
-                text = result;
-                console.log(result);
-            });
-            await sleep(1500);
+            const officeParser = require('officeparser');
+            text = await officeParser.parseWordAsync(fn);
             break;
     }
     console.log(text);
     console.log(typeof(text));
-    text = text.replace('"', '""');
-    text = text.replace("'", "''");
+    text = text.replace('\"', '');
+    text = text.replace("\'", '');
     console.log(text);
     return text;
 }
