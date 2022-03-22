@@ -34,14 +34,18 @@ app.post('/upload', async function(req, res) {
     }
 });
 
-app.get('/search/:searchField', async(req, res) => {
-    let files = await searchService.search(req.params.searchField);
+app.get('/search', async(req, res) => {
+    let files = await searchService.search(req.body.searchField);
     res.send(files);
 });
 
 app.get('/metadata', async(req, res) => {
-    console.log(req.body.filename)
     let meta = await metadataService.getMetaData(req.body.filename);
+    res.send(meta);
+})
+
+app.post('/setmetadata', async(req, res) => {
+    let meta = await metadataService.setMetaData(req.body.filename, req.body.data);
     res.send(meta);
 })
 
