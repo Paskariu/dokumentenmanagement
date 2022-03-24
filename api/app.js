@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const searchService = require('./services/searchService');
 const uploadService = require('./services/uploadService');
 const metadataService = require('./services/metadataservice');
+const dbService = require('./services/db');
 
 // CONFIGURE APP
 const app = express();
@@ -22,7 +23,7 @@ app.post('/upload', async function(req, res) {
         if (!req.files) {
             res.send({
                 status: false,
-                message: 'No file uploaded'
+                message: 'No file was provided'
             });
         } else {
             let file = req.files.file;
@@ -49,6 +50,8 @@ app.post('/setmetadata', async(req, res) => {
     res.send(meta);
 })
 
-app.listen(3000, () => {
-    console.log("Server is listening on Port 3000.")
+const PORT = process.env.NODE_DOCKER_PORT || 3000;
+app.listen(PORT, () => {
+    dbService.init();
+    console.log(`Server is listening on Port ${PORT}.`)
 })

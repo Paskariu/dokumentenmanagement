@@ -4,7 +4,7 @@ const path = require('path');
 const meta = require('./metadataservice');
 
 async function processfile(_req, _res, file, timestamp) {
-    let filename = (path.resolve('./uploads/' + timestamp + '-' + file.name)).replaceAll(path.sep, "/");
+    let filename = path.resolve('./uploads/' + timestamp + '-' + file.name);
     let tags = await meta.getMetaData(filename);
     tags = tags.data[0].Keywords;
     console.log(tags);
