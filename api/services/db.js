@@ -6,6 +6,10 @@ const config = {
     port: '3306',
     user: 'root',
     password: 'password',
+    // host: 'mysqldb',
+    // port: '3306',
+    // user: 'development',
+    // password: 'development',
     multipleStatements: true
 }
 
@@ -19,10 +23,8 @@ async function query(sql) {
     const connection = await mysql.createConnection(config);
     connection.connect(function(err) {
         if (err) throw err;
-        console.log("Connected!");
         connection.query(sql, function (err, result) {
             if (err) throw err;
-            console.log("Table created");
         });
     });
     // const [result, ] = await connection.query(sql, params);
