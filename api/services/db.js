@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const fs = require('fs');
 
 const config = {
@@ -6,6 +6,7 @@ const config = {
     port: '3306',
     user: 'root',
     password: 'password',
+    multipleStatements: true
 }
 
 function init() {
