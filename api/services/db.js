@@ -1,22 +1,33 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql');
 const fs = require('fs');
 
 const config = {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    password: '#Masupilami11',
+    database: 'documentenmanagent'
 }
 
 function init() {
-    query(fs.read("documentmanagement.sql"));
+    query(fs.readFile("./services/documentmanagement.sql", (err, data) =>{
+        if (err) throw err;
+        console.log(data);
+    }));
 }
 
 async function query(sql, params) {
     const connection = await mysql.createConnection(config);
-    const [result, ] = await connection.execute(sql, params);
-    return result;
+    connection.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        connection.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Table created");
+        });
+    });
+    // const [result, ] = await connection.query(sql, params);
+    // return result;
 }
 
 module.exports = {
