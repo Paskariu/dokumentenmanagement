@@ -7,7 +7,7 @@ async function processfile(_req, _res, file, timestamp) {
     let filename = path.resolve('./uploads/' + timestamp + '-' + file.name);
     let tags = await meta.getMetaData(filename);
     tags = tags.data[0].Keywords;
-    if (tags != undefined) {
+    if (tags != undefined && tags.length < 0) {
         tags = tags.join(",");
         tags = `\"${tags}\"`;
     } else {
@@ -15,7 +15,7 @@ async function processfile(_req, _res, file, timestamp) {
     }
     console.log(filename);
     try {
-        console.log(await db.query(`INSERT INTO files (timestamp, name, content, tags) VALUES (${Date.now()}, \"${filename.toString()}\", \"${await readFile(file.mimetype, filename)}\", ${tags});`));
+        console.log(await db.query(`USE documentmanagement; INSERT INTO files (timestamp, name, content, tags) VALUES (${Date.now()}, \"${filename.toString()}\", \"${await readFile(file.mimetype, filename)}\", ${tags});`));
     } catch (err) {
         console.log("Couldn´t read file: " + filename + "\n" + err);
     }

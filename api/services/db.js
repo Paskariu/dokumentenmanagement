@@ -5,7 +5,7 @@ const config = {
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'password',
+    password: '',
     // host: 'mysqldb',
     // port: '3306',
     // user: 'development',
@@ -23,7 +23,7 @@ async function query(sql) {
     const connection = await mysql.createConnection(config);
     connection.connect(function(err) {
         if (err) throw err;
-        connection.query(sql, function (err, result) {
+        connection.query(sql, function(err, result) {
             if (err) throw err;
         });
     });
