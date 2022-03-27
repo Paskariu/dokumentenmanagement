@@ -6,17 +6,15 @@ const config = {
     port: '3306',
     user: 'root',
     password: 'password',
-    database: 'documentenmanagent'
 }
 
 function init() {
-    query(fs.readFile("./services/documentmanagement.sql", (err, data) =>{
-        if (err) throw err;
-        console.log(data);
-    }));
+    const queryy = fs.readFileSync("./services/documentmanagement.sql").toString();
+    console.log(queryy);
+    query(queryy);
 }
 
-async function query(sql, params) {
+async function query(sql) {
     const connection = await mysql.createConnection(config);
     connection.connect(function(err) {
         if (err) throw err;
