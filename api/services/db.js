@@ -8,7 +8,7 @@ const config = {
     password: '', */
     host: 'mysqldb',
     port: '3306',
-    user: 'development',
+    user: 'root',
     password: 'development',
     multipleStatements: true
 }

@@ -17,7 +17,7 @@ services:
       - ./data/dokumentenmanagement/mysql-data/db:/var/lib/mysql:rw
     restart: always
     ports:
-      - "3306:3342"
+      - "3342:3306"
     environment:
       MYSQL_ROOT_PASSWORD: development
       MYSQL_DATABASE: development
