@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
-import { DisplayFileComponent } from './search-page/display-file/display-file.component';
+import { DisplayFileComponent } from './display-file/display-file.component';
 
 @Component({
   selector: 'app-root',

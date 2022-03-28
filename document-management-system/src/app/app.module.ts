@@ -11,11 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { UploadPageComponent } from './upload-page/upload-page.component';
 import { RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
-import { SearchPageComponent } from './search-page/search-page.component';
 import { DragDropComponent } from './upload-page/drag-drop/drag-drop.component';
 import { MatFormFieldModule } from "@angular/material/form-field"
 import { FormsModule } from '@angular/forms';
-import { DisplayFileComponent } from './search-page/display-file/display-file.component';
+import { DisplayFileComponent } from './display-file/display-file.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from "@angular/material/input"
 
@@ -25,7 +24,6 @@ import { MatInputModule } from "@angular/material/input"
     NavbarComponent,
     UploadPageComponent,
     HomePageComponent,
-    SearchPageComponent,
     DragDropComponent,
     DisplayFileComponent
   ],
