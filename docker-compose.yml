@@ -5,11 +5,10 @@ services:
       context: .
     image: amakundu/nodejs-mysql-app
     networks:
-      - frontend
-      - backend
+      - inner
     environment:
-      - DB_HOST=mysqldb
-      - DB_USER=development
+      - DB_HOST=mysql
+      - DB_USER=root
       - DB_PASSWORD=development
       - DB_NAME=documentmanagement
       - DB_PORT=3306
@@ -22,7 +21,7 @@ services:
   mysql:
     image: mysql:5.7
     networks:
-      - backend
+      - inner
     environment:
       - MYSQL_ROOT_PASSWORD=development
       - MYSQL_USER=development
@@ -30,5 +29,5 @@ services:
     container_name: mysql-app
     restart: always
 networks:
-  frontend:
-  backend:
+  inner:
+      

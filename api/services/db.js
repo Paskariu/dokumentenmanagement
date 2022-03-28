@@ -28,11 +28,13 @@ async function init() {
     const queryy = fs.readFileSync("./api/services/documentmanagement.sql").toString();
     console.log(queryy);
     const connection = mysql.createConnection(config);
-    await connection.promise().query(queryy, null, (err, result) => {
+    connection.query(queryy, (err, result) => {
         if (err) {
             console.log(err);
         }
     });
+    connection.end()
+    console.log("Success")
 }
 
 
@@ -41,6 +43,7 @@ function DBquery(sql, params) {
     const connection = mysql.createConnection(config);
     console.log(sql);
     return connection.promise().query(sql, params, (err, result) => {
+        connection.end()
         return err ? reject(err) : result;
     });
 }

@@ -1,15 +1,18 @@
 const db = require('./db');
 
 async function getMetaData(filename) {
-    tags = db.DBquery(`SELECT tags FROM files WHERE name=\'${filename}\'`);
-    return tags;
+    tags = await db.DBquery(`SELECT tags FROM files WHERE name=\'${filename}\'`);
+    console.log(tags[0][1][0]);
+    return tags[0][1][0];
 }
 
 async function setMetaData(filename, metadata) {
     metadata = metadata.join(',');
-    metadata += getMetaData(filename);
-    db.DBquery(`
-        UPDATE files SET tags = \"${metadata}\" WHERE name=\"${filename}\";`);
+    oldData = await getMetaData(filename);
+    if (oldData != 'null' && oldData != undefined) {
+        metadata += ',' + oldData;
+    }
+    ret = db.DBquery(`UPDATE files SET tags = \"${metadata}\" WHERE name=\"${filename}\";`);
     return ret;
 }
 
