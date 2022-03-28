@@ -21,7 +21,7 @@ export class DragDropComponent{
     const formData = new FormData();  
       
     for (var i = 0; i < this.files.length; i++) {   
-      formData.append("file[]", this.files[i]);  
+      formData.append("file", this.files[i]);  
     }  
      
     this.http.post('http://localhost:3000/upload', formData)  

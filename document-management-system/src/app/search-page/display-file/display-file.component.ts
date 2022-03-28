@@ -9,7 +9,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DisplayFileComponent implements OnInit {
   tag:String = "";
-  file:any = "";
   
   constructor(
     private http: HttpClient,
