@@ -8,8 +8,8 @@ services:
       - frontend
       - backend
     environment:
-      - DB_HOST=mysqldb
-      - DB_USER=development
+      - DB_HOST=mysql
+      - DB_USER=root
       - DB_PASSWORD=development
       - DB_NAME=documentmanagement
       - DB_PORT=3306
@@ -29,6 +29,14 @@ services:
       - MYSQL_PASSWORD=development 
     container_name: mysql-app
     restart: always
+
+  angular:
+    build:
+      dockerfile: dockerfile-nginx
+
+    networks:
+      - frontend
+
 networks:
   frontend:
   backend:

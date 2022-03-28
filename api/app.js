@@ -50,7 +50,10 @@ app.post('/setmetadata', async(req, res) => {
     res.send(meta);
 })
 
-await dbService.init();
+app.post('/init', async(req, res) => {
+    await dbService.init();
+})
+
 const PORT = process.env.NODE_DOCKER_PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is listening on Port ${PORT}.`)

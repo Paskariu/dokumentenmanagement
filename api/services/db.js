@@ -27,7 +27,8 @@ const config = {
 async function init() {
     const queryy = fs.readFileSync("./api/services/documentmanagement.sql").toString();
     console.log(queryy);
-    const connection = mysql.createConnection(config);
+    // const connection = mysql.createConnection(config);
+    const connection = mysql.createPool(config);
     await connection.promise().query(queryy, null, (err, result) => {
         if (err) {
             console.log(err);
