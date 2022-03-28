@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS `files` (
   `content` longtext NOT NULL,
   `tags` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB;
 COMMIT;
 
