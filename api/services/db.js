@@ -2,14 +2,14 @@ const mysql = require('mysql2');
 const fs = require('fs');
 
 const config = {
-    // host: 'localhost',
-    // port: '3306',
-    // user: 'root',
-    // password: 'password',
-    host: 'mysqldb',
+    host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'development',
+    password: '',
+    /* host: 'mysqldb',
+    port: '3306',
+    user: 'root',
+    password: 'development', */
     multipleStatements: true
 }
 
@@ -44,17 +44,13 @@ function init() {
     console.log('succes');
 }
 
-function query(sql) {
+
+function query(sql, params) {
     sql = "USE documentmanagement; " + sql;
     const connection = mysql.createConnection(config);
-    connection.connect(function(err) {
-        if (err) throw err;
-        connection.query(sql, function(err, result) {
-            if (err) throw err;
-        });
+    return connection.promise().query(sql, params, (err, result) => {
+        return err ? reject(err) : result;
     });
-    // const [result, ] = await connection.query(sql, params);
-    // return result;
 }
 
 module.exports = {
