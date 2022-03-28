@@ -1,16 +1,16 @@
-<h1 mat-dialog-title>{{fileName}}</h1>
+<h1 mat-dialog-title>{{data.name}}</h1>
 <div mat-dialog-content>
   <mat-form-field>
     <input type="text" matInput placeholder="enter new filename"[(ngModel)]="fileName">
     <button mat-button (click)="editMetadata($event)">Edit Name</button>
-    <a mat-button href="downloads/{{data.file.path}}" target="_blank" download="{{data.file.path}}">Download</a>
+    <a mat-button href="downloads/{{data.file.path}}" target="_blank" download="{{data.name}}">Download</a>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Close</button>
     </div>
   </mat-form-field>
   
   <div class="content">
-    {{fileName}}
+    {{data.content}}
   </div>
 </div>
 

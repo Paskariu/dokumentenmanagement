@@ -15,12 +15,9 @@ export class DisplayFileComponent implements OnInit {
     private http: HttpClient,
     public dialogRef: MatDialogRef<DisplayFileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
-      this.fileName=data.name
     }
 
   ngOnInit(): void {
-    //this.fileName = this.data.file.name 
-    this.fileName= "test"
   }
 
   onNoClick():void{

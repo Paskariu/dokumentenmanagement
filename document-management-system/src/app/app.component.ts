@@ -11,13 +11,14 @@ import { DisplayFileComponent } from './search-page/display-file/display-file.co
 export class AppComponent {
   title = 'document-management-system';
   msg:String = "";
-  foundFiles:any[] = [{"name": "test"}];
+  foundFiles:Object = [];
   constructor(private http: HttpClient,public dialog: MatDialog) { }
 
   onClick(event:any){
     this.http.get('http://localhost:3000/search/' + '?searchField='+ encodeURIComponent( JSON.stringify(this.msg)))
     .subscribe(res => {  
        console.log(res);
+       this.foundFiles=res;
        alert('Uploaded Successfully.');
     })
   }
