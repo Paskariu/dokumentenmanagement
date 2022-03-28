@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -8,19 +8,22 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./display-file.component.css']
 })
 export class DisplayFileComponent implements OnInit {
-
-  file:File = new File([""],"");
   fileName:String = "";
+  file:any = "";
   
   constructor(
     private http: HttpClient,
     public dialogRef: MatDialogRef<DisplayFileComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any){
+      this.fileName=data.name
+    }
 
   ngOnInit(): void {
+    //this.fileName = this.data.file.name 
+    this.fileName= "test"
   }
 
-  onNoClick(){
+  onNoClick():void{
     this.dialogRef.close();
   }
   editMetadata(event:any){

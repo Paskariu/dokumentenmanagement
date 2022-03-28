@@ -303,7 +303,15 @@
 </style>
 
 <app-navbar></app-navbar>
-
 <div class="content" role="main">
   <router-outlet></router-outlet>
+  <div class="search">
+      <div mat-form-field>
+        <input type="text" matInput placeholder="Suche"[(ngModel)]="msg">
+        <button mat-button color="accent" (click)="onClick($event)">Suchen</button>
+      </div>
+    <div *ngFor="let file of foundFiles">
+      {{file.name}}<button mat-raised-button (click)="openDialog(file)">View</button>
+    </div>
+  </div>
 </div>
