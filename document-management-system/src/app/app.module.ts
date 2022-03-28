@@ -17,6 +17,7 @@ import { MatFormFieldModule } from "@angular/material/form-field"
 import { FormsModule } from '@angular/forms';
 import { DisplayFileComponent } from './search-page/display-file/display-file.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from "@angular/material/input"
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     RouterModule,
     MatFormFieldModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

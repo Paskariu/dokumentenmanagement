@@ -9,11 +9,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DisplayFileComponent implements OnInit {
   tag:String = "";
+  value:String="";
+  fileName:String;
   
   constructor(
     private http: HttpClient,
     public dialogRef: MatDialogRef<DisplayFileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
+      this.fileName = this.data.file.name.split("/").pop();
     }
 
   ngOnInit(): void {
@@ -24,11 +27,13 @@ export class DisplayFileComponent implements OnInit {
   }
   editMetadata(event:any){
     var request = '{"filename":'+this.data.name+'"data": ['+ this.tag +'];}';
-    this.http.post('http://localhost:3000/setmetadata', request)  
+    console.log(this.tag)
+    this.http.post('http://localhost:3000/setmetadata', request)
     .subscribe(res => {  
        console.log(res);  
        alert('Uploaded Successfully.');
-    })  
+    }) 
+    this.value="";
   }
 
 }

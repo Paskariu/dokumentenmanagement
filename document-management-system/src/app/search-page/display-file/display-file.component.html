@@ -1,9 +1,10 @@
 <h1 mat-dialog-title>{{data.file.name}}</h1>
+<p *ngIf="data.file.tags!=null">Tags:{{data.file.tags}}</p>
 <div mat-dialog-content>
   <mat-form-field>
     <input type="text" matInput placeholder="Neuer Tag hinzufügen"[(ngModel)]="tag">
-    <button mat-button (click)="editMetadata($event)">Tag hinzufügen</button>
-    <a mat-button href="downloads/{{data.file.name}}" target="_blank" download="{{data.file.name}}">Download</a>
+    <button mat-button (click)="editMetadata($event)" [value]="value">Tag hinzufügen</button>
+    <a mat-button href="{{data.file.name}}" target="_blank" download="{{data.file.name.split('/').pop()}}">Download</a>
     <button mat-button (click)="onNoClick()">Schließen</button>
   </mat-form-field>
   
@@ -11,4 +12,3 @@
     {{data.file.content}}
   </div>
 </div>
-

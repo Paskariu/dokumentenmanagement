@@ -1,6 +1,6 @@
-<ngx-dropzone (change)="onSelect($event)">  
+<ngx-dropzone (change)="onSelect($event)" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">  
   <ngx-dropzone-label>Datei hier reinziehen oder den Kasten anklicken.<br>Maximale Anzahl an Dateien: {{fileLimit}}</ngx-dropzone-label>  
-  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">  
+  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>  
   </ngx-dropzone-preview>  
 </ngx-dropzone>  
