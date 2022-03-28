@@ -24,29 +24,29 @@ const config = {
 //     });
 // }
 
-async function init() {
+function init() {
     const queryy = fs.readFileSync("./api/services/documentmanagement.sql").toString();
-    const connection = await mysql.createConnection(config);
-    connection.connect()
-        .catch(err => {
-                console.log(String(err));
-                setTimeout(function() {
-                    console.log('Retrying first connect...');
-                    connection.connect().catch(() => {});
-                }, 5000);
-            }
-        );
+    const connection = mysql.createConnection(config);
+    connection.connect((err) => {
+        if (err) {
+            console.log(String(err));
+            setTimeout(function() {
+                console.log('Retrying first connect...');
+                connection.connect().catch(() => {});
+            }, 5000);
+        }
+    })
     console.log(queryy);
-    await connection.query(queryy, function (err, result) {
+    connection.query(queryy, function(err, result) {
         if (err) throw err;
         connection.end();
     });
     console.log('succes');
 }
 
-async function query(sql) {
+function query(sql) {
     sql = "USE documentmanagement; " + sql;
-    const connection = await mysql.createConnection(config);
+    const connection = mysql.createConnection(config);
     connection.connect(function(err) {
         if (err) throw err;
         connection.query(sql, function(err, result) {

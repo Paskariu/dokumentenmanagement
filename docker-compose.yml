@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
 #    env_file: ./.env
     ports:
-      - "3306:3000"
+      - "3000:3000"
     environment:
       - DB_HOST=mysqldb
       - DB_USER=development
