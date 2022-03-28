@@ -24,7 +24,7 @@ export class DragDropComponent{
       formData.append("file[]", this.files[i]);  
     }  
      
-    this.http.post('http://localhost:3300/upload', formData)  
+    this.http.post('http://localhost:3000/upload', formData)  
     .subscribe(res => {  
        console.log(res);  
        alert('Uploaded Successfully.');

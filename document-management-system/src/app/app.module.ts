@@ -12,7 +12,11 @@ import { UploadPageComponent } from './upload-page/upload-page.component';
 import { RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
-import { DragAndDropComponent } from './upload-page/drag-drop/drag-drop.component';
+import { DragDropComponent } from './upload-page/drag-drop/drag-drop.component';
+import { MatFormFieldModule } from "@angular/material/form-field"
+import { FormsModule } from '@angular/forms';
+import { DisplayFileComponent } from './search-page/display-file/display-file.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { DragAndDropComponent } from './upload-page/drag-drop/drag-drop.componen
     UploadPageComponent,
     HomePageComponent,
     SearchPageComponent,
-    DragAndDropComponent
+    DragDropComponent,
+    DisplayFileComponent
   ],
   imports: [
     BrowserModule,  
@@ -31,7 +36,10 @@ import { DragAndDropComponent } from './upload-page/drag-drop/drag-drop.componen
     MatToolbarModule,
     MatButtonModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
