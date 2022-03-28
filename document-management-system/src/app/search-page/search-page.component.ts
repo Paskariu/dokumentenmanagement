@@ -16,10 +16,7 @@ export class SearchPageComponent {
   constructor(private http: HttpClient,public dialog: MatDialog) { }
 
   onClick(event:any){
-    var obj = "{searchField: " + this.msg + "}";
-    var formData = JSON.stringify(obj);
-    const criteria = [ {a: 25}, {b: 23} ];
-    this.http.get('http://localhost:3000/search/' + '/?criteria='+ encodeURIComponent( JSON.stringify(criteria)))
+    this.http.get('http://localhost:3000/search/' + '?searchField='+ encodeURIComponent( JSON.stringify(this.msg)))
     .subscribe(res => {  
        console.log(res);
        alert('Uploaded Successfully.');
