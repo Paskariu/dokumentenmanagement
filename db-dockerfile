@@ -1,3 +1,0 @@
-FROM mysql:latest
-
-ADD config/mysql.cnf /etc/mysql/conf.d
