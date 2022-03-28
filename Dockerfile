@@ -9,17 +9,17 @@ COPY ["./api/package.json", "./api/package-lock.json*", "./", "./api/"]
 
 RUN cd api && npm install --production
 
-#RUN npm install cors
-#
-#RUN npm install express
-#
-#RUN npm install express-fileupload
-#
-#RUN npm install morgan
-#
-#RUN npm install body-parser
-#
-#RUN npm install mysql2
+RUN npm install cors
+
+RUN npm install express
+
+RUN npm install express-fileupload
+
+RUN npm install morgan
+
+RUN npm install body-parser
+
+RUN npm install mysql2
 
 COPY . .
 

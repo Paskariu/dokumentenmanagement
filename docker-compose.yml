@@ -12,7 +12,9 @@ services:
 #      volumes:
 #        - db:/var/lib/mysql
   mysqldb:
-    image: mysql:5.7
+    build:
+      context: .
+      dockerfile: db-dockerfile
     volumes:
       - ./data/dokumentenmanagement/mysql-data/db:/var/lib/mysql:rw
     restart: always
@@ -20,7 +22,7 @@ services:
       - "3342:3306"
     environment:
       MYSQL_ROOT_PASSWORD: development
-      MYSQL_DATABASE: development
+      MYSQL_DATABASE: documentmanagement
       MYSQL_USER: development
       MYSQL_PASSWORD: development
 
@@ -33,7 +35,7 @@ services:
     restart: unless-stopped
 #    env_file: ./.env
     ports:
-      - "3313:3000"
+      - "3306:3000"
     environment:
       - DB_HOST=mysqldb
       - DB_USER=development

@@ -1,0 +1,3 @@
+FROM mysql
+
+ADD config/mysql.cnf /etc/mysql/conf.d
