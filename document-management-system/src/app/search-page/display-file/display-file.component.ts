@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./display-file.component.css']
 })
 export class DisplayFileComponent implements OnInit {
-  fileName:String = "";
+  tag:String = "";
   file:any = "";
   
   constructor(
@@ -24,7 +24,7 @@ export class DisplayFileComponent implements OnInit {
     this.dialogRef.close();
   }
   editMetadata(event:any){
-    var request = '{"filename": '+ this.fileName +';}';
+    var request = '{"filename":'+this.data.name+'"data": ['+ this.tag +'];}';
     this.http.post('http://localhost:3000/setmetadata', request)  
     .subscribe(res => {  
        console.log(res);  
