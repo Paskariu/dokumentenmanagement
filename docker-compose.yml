@@ -1,16 +1,5 @@
 version: '3.8'
 services:
-#    mysqldb:
-#      image: mysql:5.7
-#      restart: unless-stopped
-#      env_file: ./.env
-#      environment:
-#        - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-#        - MYSQL_DATABASE=$MYSQLDB_DATABASE
-#      ports:
-#        - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
-#      volumes:
-#        - db:/var/lib/mysql
   mysqldb:
     build:
       context: .
@@ -19,21 +8,23 @@ services:
       - ./data/dokumentenmanagement/mysql-data/db:/var/lib/mysql:rw
     restart: always
     ports:
-      - "3342:3306"
+      - "3306:3306"
+    expose:
+      - '3306'
     environment:
+      MYSQL_HOST: localhost
       MYSQL_ROOT_PASSWORD: development
       MYSQL_DATABASE: documentmanagement
-      MYSQL_USER: development
+      MYSQL_USER: root
       MYSQL_PASSWORD: development
-
     privileged: true
-
+    networks:
+      - dms
   app:
     depends_on:
       - mysqldb
     build: .
     restart: unless-stopped
-#    env_file: ./.env
     ports:
       - "3000:3000"
     environment:
@@ -44,3 +35,7 @@ services:
       - DB_PORT=3306
     stdin_open: true
     tty: true
+    networks:
+      - dms
+networks:
+  dms:

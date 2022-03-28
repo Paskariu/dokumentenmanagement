@@ -2,10 +2,10 @@ const mysql = require('mysql2');
 const fs = require('fs');
 
 const config = {
-    host: 'localhost',
-    port: '3306',
-    user: 'root',
-    password: '',
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || '3306',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
     /* host: 'mysqldb',
     port: '3306',
     user: 'root',
